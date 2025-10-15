@@ -1,6 +1,6 @@
 # HDR Avatar Blocker
 
-A lightweight solution to disable the HDR effect on small images like avatars, preventing them from appearing overly bright or washed out. Available as both a Chrome extension and a User.js script.
+A lightweight solution to disable the HDR effect on small images like avatars, preventing them from appearing overly bright or washed out. Available as Chrome extension or User.js script.
 
 ## Problem
 
@@ -30,20 +30,16 @@ The extension injects a content script into every webpage. This script observes 
 
 ### Option 2: User.js Script
 
-Due to certain circumstances where locally loaded Chrome extensions are automatically uninstalled, we also provide a userscript installation method.
+If you're used to using a script manager like [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo), you can use the following script:
 
-1. Install a userscript manager:
-    - **Tampermonkey** (Recommended): [Chrome Web Store](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
-    - **Violentmonkey**: [Chrome Web Store](https://chrome.google.com/webstore/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag)
-    - **Greasemonkey** (Firefox only): [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/)
-2. Click to install: [hdr-avatar-blocker.user.js](./hdr-avatar-blocker.user.js)
-3. Configure settings through the userscript manager menu
+1. Click to install: [hdr-avatar-blocker.user.js](./hdr-avatar-blocker.user.js)
+2. Configure settings through the userscript manager menu
 
 ---
 
 # HDR 头像屏蔽器
 
-一个轻量级的解决方案，用于禁用小尺寸图片（如头像）的 HDR 显示效果，防止它们看起来过曝或色彩失真。支持 Chrome 扩展和 User.js 用户脚本两种形式。
+一个轻量级的解决方案，用于禁用小尺寸图片（如头像）的 HDR 显示效果，防止它们看起来过曝或色彩失真。支持 Chrome 扩展或 User.js 用户脚。
 
 ![令人困扰的头像举例](/assets/meiwaku_example.jpg)
 
@@ -75,14 +71,10 @@ Due to certain circumstances where locally loaded Chrome extensions are automati
 
 ### 方式二：User.js 用户脚本
 
-由于某些情况下本地加载的 Chrome 扩展会被自动卸载，我们也提供了用户脚本安装方式。
+如果你习惯使用 [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) 等脚本管理器，则可以使用下列脚本：
 
-1. 安装脚本管理器：
-    - **Tampermonkey**（推荐）：[Chrome Web Store](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
-    - **Violentmonkey**：[Chrome Web Store](https://chrome.google.com/webstore/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag)
-    - **Greasemonkey**（仅限 Firefox）：[Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/)
-2. 点击安装：[hdr-avatar-blocker.user.js](./hdr-avatar-blocker.user.js)
-3. 通过脚本管理器菜单配置设置
+1. 点击安装：[hdr-avatar-blocker.user.js](./hdr-avatar-blocker.user.js)
+2. 通过脚本管理器菜单配置设置
 
 ## Prompt
 
