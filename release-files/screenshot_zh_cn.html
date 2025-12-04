@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      width: 1280px;
+      height: 800px;
+      background: #f8f9fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      overflow: hidden;
+    }
+    
+    /* Background decoration */
+    .bg-circle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.05;
+      z-index: 0;
+    }
+    .c1 { width: 800px; height: 800px; background: #1a73e8; top: -200px; left: -200px; }
+    .c2 { width: 600px; height: 600px; background: #ea4335; bottom: -100px; right: -100px; }
+
+    .main-container {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .avatar-container {
+      position: relative;
+      width: 280px;
+      height: 280px;
+    }
+
+    .avatar-wrapper {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 12px solid #fff;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      position: relative;
+      background: #fff;
+    }
+
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* Simulate "bad" HDR: high contrast, high saturation, blown out highlights */
+      filter: contrast(150%) saturate(200%) brightness(120%); 
+    }
+
+    /* The "Ban" overlay */
+    .ban-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      pointer-events: none;
+    }
+    
+    .ban-icon {
+      width: 100%;
+      height: 100%;
+      opacity: 0.9;
+    }
+
+    .title {
+      font-size: 48px;
+      font-weight: 500;
+      color: #202124;
+      text-align: center;
+      letter-spacing: 0.02em;
+      max-width: 800px;
+      line-height: 1.6;
+    }
+
+    .highlight {
+      color: #1a73e8;
+      font-weight: 600;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .highlight::after {
+      display: none;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="bg-circle c1"></div>
+  <div class="bg-circle c2"></div>
+
+  <div class="main-container">
+    <div class="avatar-container">
+      <div class="avatar-wrapper">
+        <img src="../assets/hdr_frog.png" class="avatar-img" alt="HDR Avatar">
+      </div>
+      <div class="ban-overlay">
+        <!-- Custom drawn ban sign to match style perfectly -->
+        <svg viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg" class="ban-icon">
+           <!-- Red circle -->
+           <circle cx="140" cy="140" r="120" stroke="#EA4335" stroke-width="24" fill="none"/>
+           <!-- Diagonal line -->
+           <line x1="55" y1="55" x2="225" y2="225" stroke="#EA4335" stroke-width="24" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="title">
+      全局禁用小尺寸头像<br>
+      <span class="highlight">烦人的 HDR 效果</span>
+    </div>
+  </div>
+</body>
+</html>

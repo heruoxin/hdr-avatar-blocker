@@ -3,7 +3,7 @@
     "message": "HDR Avatar Blocker"
   },
   "appDesc": {
-    "message": "Disables HDR for small images (like avatars) by applying a CSS filter."
+    "message": "Globally disable the annoying HDR effect on small images (like avatars)."
   },
   "popupTitle": {
     "message": "HDR Avatar Blocker"

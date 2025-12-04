@@ -1,0 +1,6 @@
+# Ignore dependencies
+node_modules
+dist
+
+# Ignore system files
+.DS_Store

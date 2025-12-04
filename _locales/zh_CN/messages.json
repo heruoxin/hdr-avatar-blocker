@@ -3,7 +3,7 @@
     "message": "HDR 头像屏蔽器"
   },
   "appDesc": {
-    "message": "通过应用 CSS 滤镜禁用小尺寸图片（如头像）的 HDR 效果。"
+    "message": "全局禁用小尺寸头像的烦人 HDR 效果"
   },
   "popupTitle": {
     "message": "HDR 头像屏蔽器"
