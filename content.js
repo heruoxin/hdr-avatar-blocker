@@ -1,15 +1,8 @@
-let sizeThreshold = 200;
+let sizeThreshold = 160;
 
 // Load the initial threshold from storage
-chrome.storage.sync.get({ sizeThreshold: 200 }, (items) => {
-  sizeThreshold = parseInt(items.sizeThreshold, 10) || 200;
-});
-
-// Listen for changes in storage and update the threshold
-chrome.storage.onChanged.addListener((changes, namespace) => {
-  if (changes.sizeThreshold) {
-    sizeThreshold = parseInt(changes.sizeThreshold.newValue, 10) || 200;
-  }
+chrome.storage.sync.get({ sizeThreshold: 160 }, (items) => {
+  sizeThreshold = parseInt(items.sizeThreshold, 10) || 160;
 });
 
 function applyHdrFilter(img) {

@@ -3,7 +3,17 @@
   "name": "HDR Avatar Blocker",
   "version": "1.0",
   "description": "Disables HDR for small images (like avatars) by applying a CSS filter.",
-  "options_page": "options.html",
+  "icons": {
+    "128": "assets/icon128.png",
+    "256": "assets/icon256.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "128": "assets/icon128.png",
+      "256": "assets/icon256.png"
+    }
+  },
   "permissions": ["storage"],
   "content_scripts": [
     {

@@ -15,7 +15,7 @@
     'use strict';
 
     // 默认尺寸阈值
-    let sizeThreshold = GM_getValue('sizeThreshold', 200);
+    let sizeThreshold = GM_getValue('sizeThreshold', 160);
 
     // 注册菜单命令来配置设置
     GM_registerMenuCommand('设置尺寸阈值', function () {
@@ -23,14 +23,14 @@
         if (newThreshold !== null && !isNaN(newThreshold) && newThreshold > 0) {
             sizeThreshold = parseInt(newThreshold, 10);
             GM_setValue('sizeThreshold', sizeThreshold);
-            alert('设置已保存！刷新页面生效。');
+            alert('保存成功！请手动刷新页面。');
         }
     });
 
     GM_registerMenuCommand('重置为默认设置', function () {
-        sizeThreshold = 200;
+        sizeThreshold = 160;
         GM_setValue('sizeThreshold', sizeThreshold);
-        alert('已重置为默认设置（200px）！刷新页面生效。');
+        alert('已重置为默认设置（160px）！刷新页面生效。');
     });
 
     // 应用 HDR 滤镜的函数

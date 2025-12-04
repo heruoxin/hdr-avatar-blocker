@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      width: 260px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      padding: 16px;
+      margin: 0;
+      color: #333;
+      background-color: #fff;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #eee;
+      position: relative;
+    }
+    .github-link {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #5f6368;
+      transition: color 0.2s;
+    }
+    .github-link:hover {
+      color: #202124;
+    }
+    h1 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: #202124;
+    }
+    .demo-section {
+      background: #f8f9fa;
+      padding: 16px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .demo-images {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 12px;
+    }
+    .demo-arrow {
+      font-size: 20px;
+      color: #9aa0a6;
+      font-weight: bold;
+      margin-bottom: 16px; /* Align with the image center (image is 40px, label is below) */
+    }
+    .demo-tip {
+      font-size: 11px;
+      color: #70757a;
+      margin: 0;
+      line-height: 1.4;
+    }
+    .demo-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .demo-img-wrapper {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #fff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .demo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .demo-label {
+      font-size: 11px;
+      color: #5f6368;
+      font-weight: 500;
+    }
+    /* The core magic: apply the same filter as the content script */
+    .no-hdr {
+      filter: contrast(100%) saturate(100%);
+    }
+    .control-group {
+      margin-bottom: 16px;
+    }
+    label {
+      margin-bottom: 0; /* Remove bottom margin as flex handles spacing */
+      font-size: 13px;
+      font-weight: 500;
+      color: #5f6368;
+    }
+    /* Slider & Ruler Styling */
+    .slider-container {
+      position: relative;
+      margin-top: 10px;
+      margin-bottom: 16px; /* Reduced from 24px since desc is moved out */
+      width: 200px; /* 1:1 real pixel scale */
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .slider-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline; /* Align text baselines */
+      margin-bottom: 8px;
+    }
+    .current-value {
+      font-weight: bold;
+      color: #1a73e8;
+      font-size: 14px;
+    }
+    input[type="range"] {
+      width: 200px; /* 1:1 real pixel scale */
+      height: 6px;
+      margin: 0;
+      -webkit-appearance: none;
+      background: #e8eaed; /* Default background, updated by JS */
+      border-radius: 3px;
+      display: block;
+      position: relative;
+      z-index: 2;
+    }
+    input[type="range"]:focus {
+      outline: none;
+    }
+    /* Track */
+    input[type="range"]::-webkit-slider-runnable-track {
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      background: transparent; /* Allow input background (gradient) to show */
+      border-radius: 3px;
+    }
+    /* Thumb */
+    input[type="range"]::-webkit-slider-thumb {
+      height: 18px;
+      width: 18px;
+      border-radius: 50%;
+      background: #1a73e8;
+      cursor: pointer;
+      -webkit-appearance: none;
+      margin-top: -6px; /* center thumb */
+      box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+      border: 2px solid #fff;
+    }
+    /* Ruler Ticks */
+    .ruler-ticks {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 4px;
+      width: 100%; /* Full width to match slider 0-200 */
+      padding: 0 9px; /* Half thumb width (18px/2) */
+      box-sizing: border-box;
+    }
+    .tick {
+      width: 1px;
+      height: 4px;
+      background-color: #dadce0;
+      position: relative;
+    }
+    .tick::after {
+      content: attr(data-val);
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 9px;
+      color: #9aa0a6;
+    }
+    /* Only show labels for 0, 40, 80, 120, 160, 200 */
+    .tick:not([data-val="0"]):not([data-val="40"]):not([data-val="80"]):not([data-val="120"]):not([data-val="160"]):not([data-val="200"])::after {
+      display: none;
+    }
+    .help-text {
+      margin-top: 6px;
+      font-size: 12px;
+      color: #70757a;
+      line-height: 1.4;
+    }
+    .ruler-desc {
+      font-size: 11px;
+      color: #9aa0a6;
+      margin-top: 4px;
+    }
+    button {
+      width: 100%;
+      padding: 8px 0;
+      background-color: #1a73e8;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    button:hover {
+      background-color: #1557b0;
+      box-shadow: 0 1px 2px rgba(60,64,67,0.3);
+    }
+    button:active {
+      background-color: #104388;
+    }
+    #status {
+      margin-top: 10px;
+      font-size: 12px;
+      text-align: center;
+      height: 16px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="assets/icon128.png" width="24" height="24" alt="Icon">
+    <h1>HDR 头像屏蔽器</h1>
+    <a href="https://github.com/heruoxin/hdr-avatar-blocker" target="_blank" class="github-link" title="View on GitHub">
+      <svg height="20" width="20" viewBox="0 0 16 16" version="1.1" aria-hidden="true">
+        <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+      </svg>
+    </a>
+  </div>
+
+  <div class="demo-section">
+    <div class="demo-images">
+      <div class="demo-item">
+        <div class="demo-img-wrapper">
+          <img src="assets/hdr_frog.png" class="demo-img" alt="Original HDR">
+        </div>
+        <span class="demo-label">Before (HDR)</span>
+      </div>
+      <div class="demo-arrow">→</div>
+      <div class="demo-item">
+        <div class="demo-img-wrapper">
+          <img src="assets/hdr_frog.png" class="demo-img no-hdr" alt="Filtered">
+        </div>
+        <span class="demo-label">After</span>
+      </div>
+    </div>
+    <p class="demo-tip">如果两个头像没有区别，恭喜你的显示器不支持 HDR，可以卸载此插件了</p>
+  </div>
+  
+  <div class="control-group">
+    <div class="slider-header">
+      <label for="size">最大图片尺寸阈值</label>
+      <span class="current-value" id="size-display">160px</span>
+    </div>
+    <div class="help-text" style="margin-top: 0; margin-bottom: 10px;">长宽均小于此数值的图片将被禁用 HDR 效果。</div>
+    
+    <div class="slider-container">
+      <input type="range" id="size" min="0" max="200" step="20" value="160">
+      <div class="ruler-ticks">
+        <div class="tick" data-val="0"></div>
+        <div class="tick" data-val="20"></div>
+        <div class="tick" data-val="40"></div>
+        <div class="tick" data-val="60"></div>
+        <div class="tick" data-val="80"></div>
+        <div class="tick" data-val="100"></div>
+        <div class="tick" data-val="120"></div>
+        <div class="tick" data-val="140"></div>
+        <div class="tick" data-val="160"></div>
+        <div class="tick" data-val="180"></div>
+        <div class="tick" data-val="200"></div>
+      </div>
+    </div>
+    <div class="ruler-desc">选择的刻度长度即为 <span id="size-desc">160</span>px 在显示器上的实际长度</div>
+  </div>
+
+  <button id="save">保存并刷新</button>
+  <div id="status"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
