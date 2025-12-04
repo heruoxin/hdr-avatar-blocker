@@ -1,0 +1,40 @@
+{
+  "appName": {
+    "message": "HDR 头像屏蔽器"
+  },
+  "appDesc": {
+    "message": "通过应用 CSS 滤镜禁用小尺寸图片（如头像）的 HDR 效果。"
+  },
+  "popupTitle": {
+    "message": "HDR 头像屏蔽器"
+  },
+  "demoBefore": {
+    "message": "Before (HDR)"
+  },
+  "demoAfter": {
+    "message": "After"
+  },
+  "demoTip": {
+    "message": "如果两个头像没有区别，恭喜你的显示器不支持 HDR，无需此插件"
+  },
+  "settingLabel": {
+    "message": "最大头像尺寸阈值"
+  },
+  "settingHelp": {
+    "message": "长宽均小于此数值的图片将被禁用 HDR 效果。"
+  },
+  "rulerDesc": {
+    "message": "选择的刻度长度即为 $SIZE$px 在显示器上的实际长度",
+    "placeholders": {
+      "SIZE": {
+        "content": "$1"
+      }
+    }
+  },
+  "btnSave": {
+    "message": "保存并刷新"
+  },
+  "msgSaved": {
+    "message": "设置已保存，正在刷新..."
+  }
+}

@@ -225,7 +225,7 @@
 <body>
   <div class="header">
     <img src="assets/icon128.png" width="24" height="24" alt="Icon">
-    <h1>HDR 头像屏蔽器</h1>
+    <h1 data-i18n="popupTitle">HDR 头像屏蔽器</h1>
     <a href="https://github.com/heruoxin/hdr-avatar-blocker" target="_blank" class="github-link" title="View on GitHub">
       <svg height="20" width="20" viewBox="0 0 16 16" version="1.1" aria-hidden="true">
         <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
@@ -239,25 +239,25 @@
         <div class="demo-img-wrapper">
           <img src="assets/hdr_frog.png" class="demo-img" alt="Original HDR">
         </div>
-        <span class="demo-label">Before (HDR)</span>
+        <span class="demo-label" data-i18n="demoBefore">Before (HDR)</span>
       </div>
       <div class="demo-arrow">→</div>
       <div class="demo-item">
         <div class="demo-img-wrapper">
           <img src="assets/hdr_frog.png" class="demo-img no-hdr" alt="Filtered">
         </div>
-        <span class="demo-label">After</span>
+        <span class="demo-label" data-i18n="demoAfter">After</span>
       </div>
     </div>
-    <p class="demo-tip">如果两个头像没有区别，恭喜你的显示器不支持 HDR，可以卸载此插件了</p>
+    <p class="demo-tip" data-i18n="demoTip">如果两个头像没有区别，恭喜你的显示器不支持 HDR，无需此插件</p>
   </div>
   
   <div class="control-group">
     <div class="slider-header">
-      <label for="size">最大图片尺寸阈值</label>
+      <label for="size" data-i18n="settingLabel">最大头像尺寸阈值</label>
       <span class="current-value" id="size-display">160px</span>
     </div>
-    <div class="help-text" style="margin-top: 0; margin-bottom: 10px;">长宽均小于此数值的图片将被禁用 HDR 效果。</div>
+    <div class="help-text" style="margin-top: 0; margin-bottom: 10px;" data-i18n="settingHelp">长宽均小于此数值的图片将被禁用 HDR 效果。</div>
     
     <div class="slider-container">
       <input type="range" id="size" min="0" max="200" step="20" value="160">
@@ -275,10 +275,11 @@
         <div class="tick" data-val="200"></div>
       </div>
     </div>
-    <div class="ruler-desc">选择的刻度长度即为 <span id="size-desc">160</span>px 在显示器上的实际长度</div>
+    <div class="ruler-desc" data-i18n="rulerDesc" data-i18n-ph="$SIZE$">选择的刻度长度即为 <span id="size-desc">160</span>px 在显示器上的实际长度</div>
+    </div>
   </div>
 
-  <button id="save">保存并刷新</button>
+  <button id="save" data-i18n="btnSave">保存并刷新</button>
   <div id="status"></div>
 
   <script src="popup.js"></script>

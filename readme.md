@@ -75,7 +75,3 @@ If you're used to using a script manager like [Tampermonkey](https://chrome.goog
 
 1. 点击安装：[hdr-avatar-blocker.user.js](./hdr-avatar-blocker.user.js)
 2. 通过脚本管理器菜单配置设置
-
-```
-
-```

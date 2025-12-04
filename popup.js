@@ -5,6 +5,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const saveButton = document.getElementById('save');
   const statusDiv = document.getElementById('status');
 
+  // Apply i18n translations
+  document.querySelectorAll('[data-i18n]').forEach(element => {
+    const msg = chrome.i18n.getMessage(element.getAttribute('data-i18n'));
+    if (msg) {
+      element.textContent = msg;
+    }
+  });
+
+  // Handle special cases with placeholders
+  const rulerDescKey = document.querySelector('[data-i18n="rulerDesc"]');
+  if (rulerDescKey) {
+      // We'll update the full text in updateDisplay, but set initial template here if needed
+      // Actually, updateDisplay handles the dynamic part, so we just need the template structure
+  }
+
   // Load saved settings
   chrome.storage.sync.get({ sizeThreshold: 160 }, (items) => {
     // Ensure value is within our range (legacy settings might be outside)
@@ -32,7 +47,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function updateDisplay(val) {
     sizeDisplay.textContent = `${val}px`;
-    sizeDesc.textContent = val;
+    
+    // Update ruler description with i18n support
+    const rulerMsg = chrome.i18n.getMessage("rulerDesc", [val]);
+    // The message contains plain text with the number inserted.
+    // However, our HTML structure had a <span> around the number for styling/selection if needed.
+    // chrome.i18n.getMessage returns a string. To keep the HTML structure (if we wanted to bold the number),
+    // we'd need to use placeholders differently or set innerHTML.
+    // Given the current messages.json uses $SIZE$, getMessage will substitute it directly.
+    // Let's check if we need to maintain the span id="size-desc". 
+    // The previous HTML was: ...即为 <span id="size-desc">160</span>px...
+    // To support i18n fully with dynamic placement, we should let getMessage handle the whole string.
+    // If we want to style the number differently, we can put HTML tags in messages.json (not recommended for security)
+    // or just output the plain text string.
+    // For simplicity and correctness in i18n, let's replace the entire text content of the parent div.
+    
+    const rulerDescContainer = document.querySelector('.ruler-desc');
+    if (rulerDescContainer) {
+        rulerDescContainer.textContent = rulerMsg;
+    }
     
     // Update progress bar using linear-gradient on the input track
     // Calculate percentage: (val / 200) * 100%

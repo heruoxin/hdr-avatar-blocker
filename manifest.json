@@ -1,8 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "HDR Avatar Blocker",
+  "name": "__MSG_appName__",
   "version": "1.0",
-  "description": "Disables HDR for small images (like avatars) by applying a CSS filter.",
+  "description": "__MSG_appDesc__",
+  "default_locale": "zh_CN",
   "icons": {
     "128": "assets/icon128.png",
     "256": "assets/icon256.png"

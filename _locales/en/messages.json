@@ -1,0 +1,40 @@
+{
+  "appName": {
+    "message": "HDR Avatar Blocker"
+  },
+  "appDesc": {
+    "message": "Disables HDR for small images (like avatars) by applying a CSS filter."
+  },
+  "popupTitle": {
+    "message": "HDR Avatar Blocker"
+  },
+  "demoBefore": {
+    "message": "Before (HDR)"
+  },
+  "demoAfter": {
+    "message": "After"
+  },
+  "demoTip": {
+    "message": "If there's no difference between the two avatars, congratulations! Your monitor doesn't support HDR, so you don't need this extension."
+  },
+  "settingLabel": {
+    "message": "Max Avatar Size Threshold"
+  },
+  "settingHelp": {
+    "message": "Images with both width and height smaller than this value will have HDR disabled."
+  },
+  "rulerDesc": {
+    "message": "The selected scale represents $SIZE$px on your screen.",
+    "placeholders": {
+      "SIZE": {
+        "content": "$1"
+      }
+    }
+  },
+  "btnSave": {
+    "message": "Save & Reload"
+  },
+  "msgSaved": {
+    "message": "Settings saved. Reloading..."
+  }
+}
