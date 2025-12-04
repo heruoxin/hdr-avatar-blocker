@@ -20,7 +20,11 @@ The extension injects a content script into every webpage. This script observes 
 
 ## Installation
 
-### Option 1: Chrome Extension (Local Installation)
+### Option 1: Chrome Web Store (Pending Review)
+
+> The extension has been submitted to the Chrome Web Store and is currently awaiting review. A direct install link will be added here once approved.
+
+### Option 2: Local Installation (Developer Mode)
 
 1. Download the source code files.
 2. Open Chrome and navigate to `chrome://extensions`.
@@ -28,7 +32,7 @@ The extension injects a content script into every webpage. This script observes 
 4. Click the "Load unpacked" button in the top-left corner.
 5. Select the directory containing the source code.
 
-### Option 2: User.js Script
+### Option 3: User.js Script
 
 If you're used to using a script manager like [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo), you can use the following script:
 
@@ -61,7 +65,11 @@ If you're used to using a script manager like [Tampermonkey](https://chrome.goog
 
 ## 安装方式
 
-### 方式一：Chrome 扩展（本地安装）
+### 方式一：Chrome 扩展商店（审核中）
+
+> 本扩展已提交至 Chrome Web Store，目前正在等待审核。通过审核后，此处将更新直接安装链接。
+
+### 方式二：加载已解压的扩展程序（开发者模式）
 
 1. 下载所有源代码文件。
 2. 打开 Chrome 浏览器，访问 `chrome://extensions`。
@@ -69,7 +77,7 @@ If you're used to using a script manager like [Tampermonkey](https://chrome.goog
 4. 点击左上角的"加载已解压的扩展程序"按钮。
 5. 在弹出的文件选择框中，选中包含代码的文件夹。
 
-### 方式二：User.js 用户脚本
+### 方式三：User.js 用户脚本
 
 如果你习惯使用 [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) 等脚本管理器，则可以使用下列脚本：
 
