@@ -83,3 +83,11 @@ If you're used to using a script manager like [Tampermonkey](https://chrome.goog
 
 1. 点击安装：[hdr-avatar-blocker.user.js](./hdr-avatar-blocker.user.js)
 2. 通过脚本管理器菜单配置设置
+
+## 捐助支持
+
+如果您觉得这个工具对您有帮助，欢迎请作者喝一杯蜜雪冰城（CNY 8.00）。
+
+<img src="assets/alipay_qr.png" width="200" alt="Alipay QR Code">
+
+*使用支付宝扫码捐赠*
