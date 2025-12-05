@@ -34,7 +34,22 @@
   "btnSave": {
     "message": "保存并刷新"
   },
-  "msgSaved": {
-    "message": "设置已保存，正在刷新..."
+  "feedback": {
+    "message": "意见反馈"
+  },
+  "donateBtn": {
+    "message": "为作者买杯蜜雪"
+  },
+  "donatePrice": {
+    "message": "8.00 元"
+  },
+  "donateMethod": {
+    "message": "使用支付宝捐赠"
+  },
+  "donateToast": {
+    "message": "感谢支持，本项目永久开源、免费"
+  },
+  "moreApps": {
+    "message": "更多 App"
   }
 }

@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const sizeDisplay = document.getElementById('size-display');
   const sizeDesc = document.getElementById('size-desc');
   const saveButton = document.getElementById('save');
-  const statusDiv = document.getElementById('status');
 
   // Apply i18n translations
   document.querySelectorAll('[data-i18n]').forEach(element => {
@@ -11,14 +10,48 @@ document.addEventListener('DOMContentLoaded', () => {
     if (msg) {
       element.textContent = msg;
     }
-  });
+    // Donation interaction
+  const donateWrapper = document.querySelector('.donate-wrapper');
+  const donateTooltip = document.getElementById('donate-tooltip');
+  const toast = document.getElementById('toast');
+  
+  let hoverTimer = null;
+  let interactionMet = false;
 
-  // Handle special cases with placeholders
-  const rulerDescKey = document.querySelector('[data-i18n="rulerDesc"]');
-  if (rulerDescKey) {
-      // We'll update the full text in updateDisplay, but set initial template here if needed
-      // Actually, updateDisplay handles the dynamic part, so we just need the template structure
+  if (donateWrapper) {
+    donateWrapper.addEventListener('mouseenter', () => {
+      donateTooltip.classList.add('visible');
+      
+      hoverTimer = setTimeout(() => {
+        interactionMet = true;
+      }, 1000);
+    });
+
+    donateWrapper.addEventListener('mouseleave', () => {
+      donateTooltip.classList.remove('visible');
+      if (hoverTimer) {
+        clearTimeout(hoverTimer);
+        hoverTimer = null;
+      }
+
+      if (interactionMet) {
+        showToast();
+        interactionMet = false;
+      }
+    });
+
+    donateWrapper.addEventListener('click', () => {
+      interactionMet = true;
+    });
   }
+
+  function showToast() {
+    toast.classList.add('visible');
+    setTimeout(() => {
+      toast.classList.remove('visible');
+    }, 3000);
+  }
+});
 
   // Load saved settings
   chrome.storage.sync.get({ sizeThreshold: 160 }, (items) => {
@@ -88,16 +121,4 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
-
-  function showStatus(message, isSuccess) {
-    statusDiv.textContent = message;
-    statusDiv.style.color = isSuccess ? '#188038' : '#d93025';
-    statusDiv.style.opacity = 1;
-    
-    if (isSuccess) {
-      setTimeout(() => {
-        statusDiv.style.opacity = 0;
-      }, 2000);
-    }
-  }
 });

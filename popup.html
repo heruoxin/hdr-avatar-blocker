@@ -212,13 +212,165 @@
     button:active {
       background-color: #104388;
     }
-    #status {
-      margin-top: 10px;
+    .footer {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid #eee;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .footer-links {
+      display: flex;
+      margin-top: 32px;
+      gap: 16px;
+      align-items: center;
+    }
+    .feedback-link, .donate-link {
       font-size: 12px;
+      color: #5f6368;
+      text-decoration: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .donate-link {
+      color: #e91e63;
+    }
+    .feedback-link:hover, .donate-link:hover {
+      color: #e91e63;
+      text-decoration: underline;
+    }
+    .donate-wrapper {
+      position: relative;
+    }
+    .donate-tooltip {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-bottom: 12px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      padding: 16px;
       text-align: center;
-      height: 16px;
+      width: 160px;
+      z-index: 100;
       opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s, visibility 0.2s;
+      pointer-events: none; /* Prevent interaction when hidden */
+    }
+    .donate-tooltip.visible {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+    .donate-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -6px;
+      border-width: 6px;
+      border-style: solid;
+      border-color: #fff transparent transparent transparent;
+    }
+    .qr-container {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 8px;
+    }
+    .qr-code {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border-radius: 4px;
+    }
+    .qr-logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 20%;
+      height: 20%;
+      background: #fff;
+      border-radius: 4px;
+    }
+    .qr-logo svg {
+      width: 100%;
+      height: 100%;
+      fill: #1677ff; /* Alipay brand blue */
+      display: block;
+    }
+    .donate-price {
+      font-size: 16px;
+      font-weight: bold;
+      color: #202124;
+      margin-bottom: 4px;
+    }
+    .donate-method {
+      font-size: 10px;
+      color: #9aa0a6;
+    }
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.8);
+      color: #fff;
+      padding: 8px 20px;
+      border-radius: 4px;
+      font-size: 12px;
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
       transition: opacity 0.3s;
+      white-space: nowrap;
+      width: max-content;
+      max-width: 88%;
+    }
+    .toast.visible {
+      opacity: 1;
+    }
+    .more-apps {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      padding-bottom: 32px;
+    }
+    .more-apps-title {
+      font-size: 11px;
+      color: #9aa0a6;
+      margin-top: 4px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .app-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .app-link {
+      color: #5f6368;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .app-link:hover {
+      color: #202124;
+    }
+    .app-link svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
     }
   </style>
 </head>
@@ -280,8 +432,50 @@
   </div>
 
   <button id="save" data-i18n="btnSave">保存并刷新</button>
-  <div id="status"></div>
 
+  <div class="footer">
+    <div class="footer-links">
+      <a href="mailto:hdr_avatar_blocker@catchingnow.com" class="feedback-link" data-i18n="feedback">意见反馈</a>
+      <div class="donate-wrapper">
+        <span class="donate-link" id="donate-btn" data-i18n="donateBtn">为作者买杯蜜雪</span>
+        <div class="donate-tooltip" id="donate-tooltip">
+          <div class="qr-container">
+            <img src="assets/alipay_qr.png" class="qr-code" alt="Alipay QR">
+            <div class="qr-logo">
+              <svg viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.295 17.292c-1.107 0.098-2.107 0.489-2.943 1.094l0.017-0.012c-2.306 2.004-0.926 5.67 3.74 5.67 3.164-0.279 5.879-1.984 7.527-4.46l0.023-0.037c-2.313-1.417-5.114-2.256-8.111-2.256-0.089 0-0.179 0.001-0.268 0.002l0.013-0zM21.094 18.164c1.058-1.815 1.917-3.916 2.468-6.139l0.035-0.166h-5.912v-2.123h7.242v-1.185h-7.242v-3.54h-2.955c-0.005-0-0.011-0-0.017-0-0.277 0-0.502 0.225-0.502 0.502 0 0.003 0 0.006 0 0.009v-0 3.030h-7.324v1.185h7.324v2.123h-6.047v1.185h11.729c-0.463 1.576-1.037 2.941-1.744 4.224l0.054-0.107c-3.805-1.252-7.867-2.267-10.418-1.642-1.318 0.265-2.451 0.93-3.296 1.861l-0.004 0.005c-2.833 3.438-0.801 8.659 5.182 8.659 3.944-0.218 7.384-2.204 9.564-5.173l0.025-0.035c3.94 1.889 11.74 5.132 11.74 5.132v0.196c-0.003 2.646-2.148 4.79-4.795 4.79-0.003 0-0.005 0-0.008 0h-20.384c-0.002 0-0.005 0-0.008 0-2.647 0-4.794-2.144-4.797-4.791v-20.324c0.003-2.647 2.149-4.791 4.796-4.791 0.003 0 0.006 0 0.009 0h20.384c0.002 0 0.005 0 0.007 0 2.647 0 4.793 2.145 4.795 4.791v15.507c-2.037-0.403-3.812-0.928-5.516-1.595l0.218 0.075c-1.2-0.401-2.81-1.014-4.604-1.661z"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="donate-price" data-i18n="donatePrice">8.00 元</div>
+          <div class="donate-method" data-i18n="donateMethod">使用支付宝捐赠</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="more-apps">
+      <div class="more-apps-title" data-i18n="moreApps">更多 App</div>
+      <div class="app-links">
+        <a href="https://play.google.com/store/apps/dev?id=4678881964570346633" target="_blank" class="app-link" title="Android Apps">
+          <svg style="transform: scale(0.94); transform-origin: center; position: relative; top: -0.5px;" fill="currentColor" viewBox="-1 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="m3.751.61 13.124 7.546-2.813 2.813zm-2.719-.61 12.047 12-12.046 12c-.613-.271-1.033-.874-1.033-1.575 0-.023 0-.046.001-.068v.003-20.719c-.001-.019-.001-.042-.001-.065 0-.701.42-1.304 1.022-1.571l.011-.004zm19.922 10.594c.414.307.679.795.679 1.344 0 .022 0 .043-.001.065v-.003c.004.043.007.094.007.145 0 .516-.25.974-.636 1.258l-.004.003-2.813 1.593-3.046-2.999 3.047-3.047zm-17.203 12.796 10.312-10.359 2.813 2.813z"/>
+          </svg>
+        </a>
+        <a href="https://apps.apple.com/developer/%E8%8B%A5%E6%98%95-%E4%BD%95/id1842745808" target="_blank" class="app-link" title="iOS Apps">
+          <svg style="transform: scale(1.02); transform-origin: center; position: relative; top: -1px;" viewBox="0 0 384 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 52.3-11.4 69.5-34.3z"></path>
+          </svg>
+        </a>
+        <a href="https://www.catchingnow.com" target="_blank" class="app-link" title="Website">
+          <svg style="transform: scale(1.02); transform-origin: center;" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2 0-.68.07-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .67-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" data-i18n="donateToast">感谢支持，本项目永久开源、免费</div>
   <script src="popup.js"></script>
 </body>
 </html>

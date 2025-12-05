@@ -34,7 +34,22 @@
   "btnSave": {
     "message": "Save & Reload"
   },
-  "msgSaved": {
-    "message": "Settings saved. Reloading..."
+  "feedback": {
+    "message": "Feedback"
+  },
+  "donateBtn": {
+    "message": "Buy me half a coffee"
+  },
+  "donatePrice": {
+    "message": "CNY 8.00"
+  },
+  "donateMethod": {
+    "message": "Donate via Alipay"
+  },
+  "donateToast": {
+    "message": "Thanks for your support! This project is forever open source and free."
+  },
+  "moreApps": {
+    "message": "More Apps"
   }
 }
