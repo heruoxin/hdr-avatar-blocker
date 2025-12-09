@@ -20,9 +20,9 @@ The extension injects a content script into every webpage. This script observes 
 
 ## Installation
 
-### Option 1: Chrome Web Store (Pending Review)
+### Option 1: Chrome Web Store (Recommended)
 
-> The extension has been submitted to the Chrome Web Store and is currently awaiting review. A direct install link will be added here once approved.
+<https://chromewebstore.google.com/detail/blaajgdlongjladcecgcegdgghoijckb>
 
 ### Option 2: Local Installation (Developer Mode)
 
@@ -65,9 +65,9 @@ If you're used to using a script manager like [Tampermonkey](https://chrome.goog
 
 ## 安装方式
 
-### 方式一：Chrome 扩展商店（审核中）
+### 方式一：Chrome 扩展商店（推荐）
 
-> 本扩展已提交至 Chrome Web Store，目前正在等待审核。通过审核后，此处将更新直接安装链接。
+<https://chromewebstore.google.com/detail/blaajgdlongjladcecgcegdgghoijckb>
 
 ### 方式二：加载已解压的扩展程序（开发者模式）
 
